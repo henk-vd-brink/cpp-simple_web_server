@@ -7,3 +7,5 @@ services:
     build: 
       context: ./api
       dockerfile: dockerfile
+    ports: 
+      - 8123:8123

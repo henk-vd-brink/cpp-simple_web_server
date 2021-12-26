@@ -27,10 +27,12 @@ RUN git clone https://github.com/meltwater/served
 
 WORKDIR /libs/served/cmake.build
 
-RUN cmake ../ && make
+RUN cmake ../ && make && make install
 
 ## Make binaries
 FROM cpp-boost-served as cpp-api
+
+RUN ldconfig
 
 WORKDIR /code
 
@@ -39,7 +41,6 @@ COPY . .
 WORKDIR /code/build
 RUN cmake ../ && make
 
-RUN ls -l 
-# # RUN make
+WORKDIR /code
 
-# # RUN sleep(10000)
+CMD ["/code/bin/main"]
