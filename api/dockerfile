@@ -1,0 +1,45 @@
+FROM debian:buster-20201117-slim as cpp-boost
+
+WORKDIR /code
+
+RUN apt-get update 
+RUN apt-get -y install cmake g++ pkg-config git curl cmake-data
+
+WORKDIR /libs
+
+RUN git clone --recursive https://github.com/boostorg/boost.git
+
+WORKDIR /libs/boost
+
+RUN ./bootstrap.sh --prefix=/usr/local
+RUN ./b2 install
+
+## Install served library
+FROM cpp-boost AS cpp-boost-served
+
+RUN export BOOST_INCLUDEDIR=/usr/local/include/boost
+
+WORKDIR /libs
+
+RUN ls -l /usr/local/include
+
+RUN git clone https://github.com/meltwater/served
+
+WORKDIR /libs/served/cmake.build
+
+RUN cmake ../ && make
+
+## Make binaries
+FROM cpp-boost-served as cpp-api
+
+WORKDIR /code
+
+COPY . .
+
+WORKDIR /code/build
+RUN cmake ../ && make
+
+RUN ls -l 
+# # RUN make
+
+# # RUN sleep(10000)
