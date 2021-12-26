@@ -36,7 +36,8 @@ RUN ldconfig
 
 WORKDIR /code
 
-COPY . .
+COPY src/ src/
+ADD CMakeLists.txt .
 
 WORKDIR /code/build
 RUN cmake ../ && make

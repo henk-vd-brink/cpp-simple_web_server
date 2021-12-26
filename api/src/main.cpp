@@ -4,15 +4,15 @@
 int main(int argc, const char *argv[])
 {
     served::multiplexer mux;
-    mux.handle("/api/v1/greeting")
+
+    mux.handle("/api/greeting")
         .get([&](served::response &res, const served::request &req)
              {
             std::string name = req.query["name"];
             res.set_header("content-type", "application/json");
-            res << "{ \"content\": \"Hello, " << ((name.length() > 0) ? name : "world") << "!\" }\n"; });
+            res << "{ \"content\": \"Hello World\"}\n"; });
 
-    std::cout << "Try this example with:" << std::endl;
-    std::cout << "  curl \"http://localhost:8123/api/v1/greeting?name=world\"" << std::endl;
+    std::cout << "Succesfully started the API!" << std::endl;
 
     served::net::server server("0.0.0.0", "8123", mux);
     server.run(10);
