@@ -8,7 +8,6 @@ int main(int argc, const char *argv[])
     mux.handle("/api/greeting")
         .get([&](served::response &res, const served::request &req)
              {
-            std::string name = req.query["name"];
             res.set_header("content-type", "application/json");
             res << "{ \"content\": \"Hello World\"}\n"; });
 
