@@ -4,8 +4,10 @@ This is an introductionary project to get familiar with the C++ syntax and metho
 ## Getting Started
 
 ### Installation
+```
 git clone https://github.com/henk-vd-brink/cpp-simple_web_server.git
 cd cpp-simple_web_server
+```
 
 ### Run
 ```
