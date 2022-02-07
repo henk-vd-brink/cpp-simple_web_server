@@ -1,7 +1,20 @@
-# C++ Simple Containerized RESTful API
-This is an introductionary project to get familiar with the C++ syntax and methodology.
+## About the Project
+This is an introductionary project to get familiar with the C++ syntax and methodology. It contains a small single-endpoint API endpoint in a docker container. The reason for building this was to familiarize myself with building a dockerized C++ application.
 
-# Structure
+## Getting Started
+
+### Installation
+git clone https://github.com/henk-vd-brink/cpp-simple_web_server.git
+cd cpp-simple_web_server
+
+### Run
+```
+sudo docker-compose up --build
+```
+
+See: 'http://localhost:8123/api/greeting'
+
+## Structure
 ```bash
 .
 ├── README.md
@@ -12,13 +25,3 @@ This is an introductionary project to get familiar with the C++ syntax and metho
 │       └── main.cpp
 └── docker-compose.yml
 ```
-
-#Usage
-Go to the root folder and:
-
-```bash
-sudo docker-compose up --build
-```
-
-See 'http://localhost:8123/api/greeting'
-
